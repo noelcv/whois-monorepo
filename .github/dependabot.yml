@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    allow:
+      - dependency-type: 'production'
+      # allow for specific dependencies - for example internal dependencies
+      - dependency-name: 'tailwindcss'
+    # define dependencies that shouldn't be updated
+    ignore:
+      - dependency-name: '@angular-devkit/build-angular'
