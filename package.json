@@ -10,7 +10,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "npm install && npm --prefix ./server install && npm --prefix ./client install",
-    "build": "npm --prefix ./server run build && npm --prefix ./client run build",
+    "build": "npm run build:server & npm run build:client",
+    "build:server": "npm --prefix ./server run build",
+    "build:client": "npm --prefix ./client run build",
+    "start:server": "npm --prefix ./server start",
+    "start:client": "npm --prefix ./client start",
+    "start": "npm start:server & npm start:client",
     "lint:ci": "eslint -c .eslintrc.json --fix",
     "test:ci": "echo 'running placeholder for test:ci script'",
     "format": "prettier --write .",
