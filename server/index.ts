@@ -34,7 +34,10 @@ app.use(morgan('dev'));
 app.use(Express.json());
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Origin',
+    'https://whois-monorepo-client.vercel.app'
+  );
   next();
 });
 app.use(router);
