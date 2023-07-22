@@ -14,5 +14,11 @@
         "Access-Control-Allow-Origin": "https://whois-monorepo-client.vercel.app"
       }
     }
-  ]
+  ],
+  "rewrites": [
+    {
+        "source": "/(.*)",
+        "destination": "/"
+    }
+]
 }

@@ -36,8 +36,9 @@ export async function lookUp(req: Request, res: Response) {
           logRecord: result,
         };
 
-        addLog(payload);
         res.status(200);
+        addLog(payload);
+        console.log(req.query, 'req.query');
         client.destroy();
       });
 

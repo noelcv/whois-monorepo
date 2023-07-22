@@ -1,9 +1,9 @@
 const CONTENT_SECURITY_POLICY: object = {
   useDefaults: true,
   directives: {
-    defaultSrc: ["'self'", '*noelcv.vercel.app/*'],
-    scriptSrc: ["'self'", '*noelcv.vercel.app/*'],
-    connectSrc: ["'self'", 'https://*noelcv.vercel.app/*'],
+    defaultSrc: ["'self'", 'whois-monorepo-client.vercel.app/*'],
+    scriptSrc: ["'self'", 'whois-monorepo-client.vercel.app/*'],
+    connectSrc: ["'self'", 'https://whois-monorepo-client.vercel.app/*'],
     baseUri: ["'self'"],
     formAction: ["'self'"],
     styleSrc: ["'self'"],
