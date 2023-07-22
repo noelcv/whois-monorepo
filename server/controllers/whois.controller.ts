@@ -8,10 +8,10 @@ export async function lookUp(req: Request, res: Response) {
   try {
     const sld = req.query.sld as string;
     const tld = req.query.tld as string;
-    
+
     console.log('sld from Client: ', sld);
     console.log('tld from Client: ', tld);
-   
+
     const isValidSld = validateSld(sld);
     const isValidTld = validateTld(tld);
 
@@ -26,22 +26,22 @@ export async function lookUp(req: Request, res: Response) {
         client.write(queryPacket);
       });
 
-      client.on('data', (data) => {
+      client.on('data', data => {
         const result = data.toString();
-        console.log(result, 'result')
+        console.log(result, 'result');
         res.send(JSON.stringify(result));
 
         const payload = {
           domainName: domain,
           logRecord: result,
         };
-        
+
         addLog(payload);
         res.status(200);
         client.destroy();
       });
 
-      client.on('error', (err) => {
+      client.on('error', err => {
         console.log('❌ Error connecting to whois server: ', err);
       });
     } else if (!isValidSld && !isValidTld) {

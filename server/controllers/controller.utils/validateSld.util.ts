@@ -3,7 +3,7 @@ DNS names can contain only alphabetical characters (A-Z), numeric characters (0-
 Period characters are allowed only when they are used to delimit the components of domain style name
 */
 export function validateSld(sld: string): boolean {
-  let regex = new RegExp(/^(?!\.)(?!.*\.$)(?!.*\.\.)[a-zA-Z0-9.]+$/);
+  const regex = new RegExp(/^(?!\.)(?!.*\.$)(?!.*\.\.)[a-zA-Z0-9.]+$/);
   /**
    * ^(?!\.) -- negative look ahead to make sure the first character is not a period
    * (?!.*\.$) -- last character is not a period
@@ -11,7 +11,7 @@ export function validateSld(sld: string): boolean {
    * [a-zA-Z0-9-.]+$ -- only allow letters, numbers, periods, and hyphens
    */
 
-  let isValidInput = regex.test(sld);
-  let hasValidLength = sld.length > 0 && sld.length < 64;
+  const isValidInput = regex.test(sld);
+  const hasValidLength = sld.length > 0 && sld.length < 64;
   return isValidInput && hasValidLength ? true : false;
 }

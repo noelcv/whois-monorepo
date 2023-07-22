@@ -1,16 +1,16 @@
 'use strict';
 
-import mongoose from './index.model'
+import mongoose from './index.model';
 
-const Schema  = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-
-
-const querySchema = new Schema({
-  domainName: {type: String},
-  logRecord: {type: String},
-}, { timestamps: true });
-
+const querySchema = new Schema(
+  {
+    domainName: { type: String },
+    logRecord: { type: String },
+  },
+  { timestamps: true }
+);
 
 // const querySchema = new Schema({
 //   domainName: {type: String},
