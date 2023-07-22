@@ -11,6 +11,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Noel Vieira",
+    "email": "noelguiavieira@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noelcv/whois-monorepo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noelcv/whois-monorepo/issues"
+  },
+  "homepage": "https://github.com/noelcv/whois-monorepo#readme",
   "license": "ISC"
 }
