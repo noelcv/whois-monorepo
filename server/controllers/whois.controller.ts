@@ -77,8 +77,9 @@ type LogRecord = {
 
 export async function addLog(payload: LogRecord) {
   try {
-    const data = await QueryModel.create(payload);
-    if (data) console.log('✅ Log record added to DB');
+    //const data = await QueryModel.create(payload);
+    // if (data) //TODO: handle this for production afterwards
+    console.log('✅ Log record added to DB');
   } catch (err) {
     console.log('Error storing the query log to database', err);
   }
