@@ -97,9 +97,7 @@ All the controllers provide consistent error handling, using try/catch blocks, w
 
 ### Client-side input sanitization
 
-```jsx
 <img src="./screenshots/InputValidationSQLinjection.png">
-```
 
 Although the core of the data validation strategy occurs on the server-side, we still implemented client-side validation on Reactive Forms and disable submission when forbidden characters or missing fields are missing.
 
