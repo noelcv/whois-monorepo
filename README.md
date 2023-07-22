@@ -1,6 +1,6 @@
 # whois-monorepo
 
-[![CodeFactor](https://www.codefactor.io/repository/github/noelcv/whois-query-fe/badge)](https://www.codefactor.io/repository/github/noelcv/whois-query-fe)
+[![CodeFactor](https://www.codefactor.io/repository/github/noelcv/whois-monorepo/badge)](https://www.codefactor.io/repository/github/noelcv/whois-monorepo)
 
 Repository of a fullstack [WhoisQuery](https://whois-monorepo-client.vercel.app) Application. Originally split into two separate microservices, Whois-Monorepo brings together in one Monolith both backend (server) and frontend (client).
 
