@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://whois-monorepo-server.vercel.app/whois',
+  apiUrl: 'https://whois-monorepo-server.onrender.com/whois',
 };
