@@ -11,7 +11,10 @@
     "dev-start": "nodemon build/index.js"
   },
   "keywords": [],
-  "author": "Noel Vieira",
+  "author": {
+    "name": "Noel Vieira",
+    "email": "noelguiavieira@gmail.com"
+  },
   "license": "ISC",
   
   "dependencies": {
