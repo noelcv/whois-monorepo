@@ -9,7 +9,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "npm --prefix ./server install && npm --prefix ./client install",
+    "install": "npm install && npm --prefix ./server install && npm --prefix ./client install",
+    "build": "npm --prefix ./server run build && npm --prefix ./client run build",
     "lint:ci": "eslint -c .eslintrc.json --fix",
     "test:ci": "echo 'running placeholder for test:ci script'",
     "format": "prettier --write .",
