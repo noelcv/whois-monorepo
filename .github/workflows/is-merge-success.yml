@@ -1,0 +1,30 @@
+name: Successful Merge
+
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: echo "running npm test before completing merge"
+
+  publish_if_merged:
+    if: github.event.pull_request.merged == true
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci
+      - uses: actions/checkout@v3
+      - run: echo "We're printing this because the PR passed the tests and has now been merged into main"

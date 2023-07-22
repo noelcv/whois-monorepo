@@ -1,0 +1,37 @@
+name: Complex
+on: push #trigger
+jobs:
+  job1:
+    name: First job
+    runs-on: ubuntu-latest #bash
+    steps:
+      - name: Step one
+        # execute an action
+        uses: actions/checkout@v2
+      - name: Step two
+        run: env | sort
+
+  job2:
+    name: Second job
+    runs-on: windows-latest #Powershell
+    steps:
+      - name: Step one
+        uses: actions/checkout@v2
+      - name: Step two
+        run: 'Get-ChildItem Env:  | Sort-Object Name'
+  job3:
+    name: Third job
+    needs: job2 # make job3 dependable of job2 - it will only run after job2
+    runs-on: macos-latest
+    steps:
+      - name: get Date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+  job4:
+    name: Fourth job
+    needs: [job1, job2, job3]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step One
+        uses: actions/checkout@v2
+      - name: Step two
+        run: echo "The job is done"
