@@ -27,7 +27,7 @@ app.use(
   })
 );
 
-// app.use(helmet(SECURITY_OPTIONS));
+app.use(helmet(SECURITY_OPTIONS));
 app.disable('x-powered-by'); //Hide the information about the framework used and save bandwidth
 
 app.use(morgan('dev'));

@@ -43,6 +43,7 @@ export async function lookUp(req: Request, res: Response) {
       });
 
       client.on('error', err => {
+        res.send(' Error connecting to whois server');
         console.log('❌ Error connecting to whois server: ', err);
       });
     } else if (!isValidSld && !isValidTld) {
