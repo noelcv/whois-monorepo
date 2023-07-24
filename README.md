@@ -13,8 +13,7 @@ Repository of a fullstack [WhoisQuery](https://whois-monorepo-client.vercel.app)
 <a href="https://angular.io/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/angularjs-colored.svg" width="36" height="36" alt="Angular" /></a> 
 <a href="https://ngrx.io/"><img width="36" height="36" src="https://cdn.cdnlogo.com/logos/n/66/ngrx.svg"></a> 
 <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/tailwindcss-colored.svg" width="36" height="36" alt="TailwindCSS" /></a>
-<br> 
-
+<br>
 
 ## Backend Tech-Stack
 
@@ -22,6 +21,7 @@ Repository of a fullstack [WhoisQuery](https://whois-monorepo-client.vercel.app)
 <a href="https://nodejs.org/en/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/nodejs-colored.svg" width="36" height="36" alt="NodeJS" /></a>
 <a href="https://expressjs.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/express-colored-dark.svg" width="36" height="36" alt="Express" /></a>
 <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/mongodb-colored.svg" width="36" height="36" alt="MongoDB" /></a>
+
 </p>
 
 ## CI/CD Layer
@@ -85,11 +85,7 @@ Moreover, we also define the HTTP Request methods to be allowed - for now, only 
 
 Using helmet as Middleware to set custom headers, we define custom security policies to reduce the surface and preventing against MIME-Type sniffing, Man-in-the-Middle and XSS-Cross Site Scripting attacks.
 
-We also validate the query parameters from the client against REGEX patterns to match the following conditions: 
-    - The domain name shall have between 1 and 63 characters.
-    - Only alphanumeric characters and hiffens (-) are acceptable.
-    - Period (.) signs are allowed as long as they are not placed neither at the beginning nor at the end of the SLD. Also, we implemented sanitization against having two dots in a row;
-    - Parallel validation of the Top-Level Domains against the list of supported TLD by the application.
+We also validate the query parameters from the client against REGEX patterns to match the following conditions: - The domain name shall have between 1 and 63 characters. - Only alphanumeric characters and hiffens (-) are acceptable. - Period (.) signs are allowed as long as they are not placed neither at the beginning nor at the end of the SLD. Also, we implemented sanitization against having two dots in a row; - Parallel validation of the Top-Level Domains against the list of supported TLD by the application.
 
 ### Semantic Error Handling
 

@@ -7,11 +7,8 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import SECURITY_OPTIONS from './config/helmet.config';
 import { env } from 'process';
-const PORT = process.env.PORT || 3001;
-const allowedOrigins = [
-  process.env.PRODUCTION_CLIENT_URL,
-  process.env.DEV_CLIENT_URL,
-];
+const PORT = env.PORT || 3001;
+const allowedOrigins = [env.PRODUCTION_CLIENT_URL, env.DEV_CLIENT_URL];
 
 const app = Express();
 
