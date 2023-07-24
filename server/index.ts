@@ -6,6 +6,7 @@ dotenv.config();
 import morgan from 'morgan';
 import helmet from 'helmet';
 import SECURITY_OPTIONS from './config/helmet.config';
+import { env } from 'process';
 const PORT = process.env.PORT || 3001;
 const allowedOrigins = [
   process.env.PRODUCTION_CLIENT_URL,
@@ -34,10 +35,12 @@ app.use(morgan('dev'));
 app.use(Express.json());
 
 app.use((req, res, next) => {
-  res.header(
-    'Access-Control-Allow-Origin',
-    'https://whois-monorepo-client.vercel.app'
-  );
+  if (env.NODE_ENV === 'production') {
+    res.header(
+      'Access-Control-Allow-Origin',
+      'https://whois-monorepo-client.vercel.app'
+    );
+  }
   next();
 });
 app.use(router);
