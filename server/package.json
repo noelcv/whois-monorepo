@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "build-watch": "tsc --watch",
+    "build:watch": "tsc --watch",
     "start": "node build/index.js",
-    "dev-start": "nodemon build/index.js"
+    "start:dev:server": "npm run build:watch & nodemon build/index.js"
   },
   "keywords": [],
   "author": {
