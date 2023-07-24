@@ -8,18 +8,23 @@ import {
   RemoveFromWatchList,
 } from 'src/app/store/actions/watchlist.actions';
 import { IAppState } from 'src/app/store/states/app.state';
+import { IDomainState } from 'src/app/store/states/domain.state';
+import { IDomainResult } from 'src/app/types/domainResult.interface';
 import { IParsedDomain } from 'src/app/types/parsedDomain.interface';
 import { domainMapper } from 'src/app/utils/domainMapper';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
-  imports: [AsyncPipe, NgIf],
   standalone: true,
   styleUrls: [],
+  imports: [AsyncPipe, NgIf, SpinnerComponent],
 })
 export class SearchResultsComponent implements OnInit {
   @Input()
+  isLoading = false;
+  parsedData: string | undefined;
   domainResult$ = this._store.pipe(select('domain'));
   displayUI$ = this._store.pipe(select('display'));
   displayFavorites$ = this._store.pipe(select('displayFavorites'));
@@ -33,6 +38,9 @@ export class SearchResultsComponent implements OnInit {
       }
     });
 
+  parse(data: IDomainResult | undefined): string {
+    return JSON.stringify(data, null, 2);
+  }
   addToWatchList(domainResult$: any) {
     const payload: string = domainResult$.actionsObserver._value.payload;
     const objectToStore = domainMapper(payload);
@@ -49,5 +57,15 @@ export class SearchResultsComponent implements OnInit {
 
   constructor(private _store: Store<IAppState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.domainResult$.subscribe((data: IDomainState) => {
+      if (data.domainResult) {
+        this.parsedData = this.parse(data.domainResult);
+      }
+
+      this.parsedData === '{}'
+        ? (this.isLoading = true)
+        : (this.isLoading = false);
+    });
+  }
 }

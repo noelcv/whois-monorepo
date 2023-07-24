@@ -5,15 +5,20 @@
       <div class="flex flex-row justify-between align-middle">
         <h2>Results</h2>
         <button
+          *ngIf="!isLoading"
           (click)="addToWatchList(domainResult$)"
           class="w-1/4 h-20 min-w-fit bg-teal-600 text-md text-white font-extralight active:bg-teal-800 active:font-semibold">
           Add to WatchList
         </button>
       </div>
       <div
+        *ngIf="!isLoading"
         class="max-w-prose text-md leading-8"
         [innerText]="(domainResult$ | async)?.domainResult">
         {{ (domainResult$ | async)?.domainResult }}
+      </div>
+      <div *ngIf="isLoading">
+        <app-spinner></app-spinner>
       </div>
     </div>
   </div>
