@@ -7,7 +7,7 @@ import {
   EDomainActions,
   GetDomainQuery,
 } from '../actions/domain.actions';
-import { DomainService } from 'src/app/services/domain.service';
+import { DomainService } from 'src/app/services/domain/domain.service';
 import { IDomainResult } from 'src/app/types/domainResult.interface';
 
 @Injectable()

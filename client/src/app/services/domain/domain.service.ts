@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IDomainResult } from '../types/domainResult.interface';
-import { IQuery } from '../types/domainQuery.interface';
+import { IDomainResult } from '../../types/domainResult.interface';
+import { IQuery } from '../../types/domainQuery.interface';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',

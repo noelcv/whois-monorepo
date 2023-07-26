@@ -4,7 +4,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 
 import { StateManagementModule } from './app/stateManagement.module';
-import { DomainService } from './app/services/domain.service';
+import { DomainService } from './app/services/domain/domain.service';
 import { environment } from './environments/environment';
 import { AppRoutingModule } from './app/app-routing.module';
 
