@@ -1,6 +1,7 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Signal, signal } from '@angular/core';
 import { Store, select } from '@ngrx/store';
+import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
 import { DisplayFavorites } from 'src/app/store/actions/ui.actions';
 import {
   AddDomainToWatchList,
@@ -28,6 +29,7 @@ export class SearchResultsComponent implements OnInit {
   domainResult$ = this._store.pipe(select('domain'));
   displayUI$ = this._store.pipe(select('display'));
   displayFavorites$ = this._store.pipe(select('displayFavorites'));
+  location$: unknown;
 
   selectedDomain: IParsedDomain | undefined = undefined;
   selectedFavorite$ = this._store
@@ -55,7 +57,7 @@ export class SearchResultsComponent implements OnInit {
     }
   }
 
-  constructor(private _store: Store<IAppState>) {}
+  constructor(private _store: Store<IAppState>, geo: GeolocationService) {}
 
   ngOnInit(): void {
     this.domainResult$.subscribe((data: IDomainState) => {
