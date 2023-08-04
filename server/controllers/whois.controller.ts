@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import net from 'net';
-import { validateSld } from './controller.utils/validateSld.util';
-import { validateTld } from './controller.utils/validateTld.util';
+import { validateSld } from './utils/whois/validateSld.util';
+import { validateTld } from './utils/whois/validateTld.util';
 import QueryModel from '../models/query.model';
 
 export async function lookUp(req: Request, res: Response) {

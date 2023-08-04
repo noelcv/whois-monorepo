@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
 import dotenv from 'dotenv';
+import { parseUserLocation } from './utils/location/parseUserLocation.util';
+import { validateUserLocation } from './utils/location/validateUserLocation.util';
 dotenv.config();
 const LOCATION_API_URL = `${process.env.LOCATION_API_URL}${process.env.LOCATION_TOKEN}`;
 
@@ -9,7 +11,7 @@ interface LocationCoords {
   longitude: string;
 }
 
-interface UserLocation {
+export interface UserLocation {
   town: string;
   country: string;
 }
@@ -20,7 +22,8 @@ export async function lookUp(req: Request, res: Response) {
       return res.status(400).send('❌ Invalid location data');
     const lat = req.body.latitude as number;
     const long = req.body.longitude as number;
-    if (!isValidLocation(lat, long))
+    const isValidUserLocation = validateUserLocation(lat, long);
+    if (!isValidUserLocation)
       return res.status(400).send('❌ Invalid coordinates');
     const userLocation = await getLocation(lat, long);
     if (userLocation) res.send(userLocation);
@@ -46,12 +49,4 @@ const getLocation = async (
   } catch (err) {
     console.log('❌ Error at getLocation: ', err);
   }
-};
-
-const parseUserLocation = (userLocation: UserLocation): string => {
-  return JSON.stringify(userLocation);
-};
-
-const isValidLocation = (lat: number, long: number): boolean => {
-  return lat > 90 || lat < -90 || long > 180 || long < -180 ? false : true;
 };
