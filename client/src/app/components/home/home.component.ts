@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
 
     geo.locationObservable.subscribe((location: unknown) => {
       this.location$ = location as unknown as IUserLocation;
-      console.log(this.location$?.town, 'this.location$');
     });
   }
 

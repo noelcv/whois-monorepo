@@ -34,7 +34,7 @@ export class GeolocationService {
     };
 
     function err() {
-      console.log('error', err);
+      if (!environment.production) console.log('error', err);
       return err;
     }
     navigator.geolocation.getCurrentPosition(success, err);
