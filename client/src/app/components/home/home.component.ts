@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
 import { HeaderComponent } from '../header/header.component';
@@ -14,14 +15,20 @@ import { WatchListComponent } from '../watch-list/watch-list.component';
     WatchListComponent,
     SearchbarComponent,
     SearchResultsComponent,
+    NgIf,
   ],
   styleUrls: [],
 })
 export class HomeComponent implements OnInit {
-  location = GeolocationService.prototype.init();
-  constructor() {}
+  location$: unknown;
 
-  ngOnInit(): void {
-    console.log(this.location);
+  constructor(geo: GeolocationService) {
+    geo.init();
+
+    geo.locationObservable.subscribe((location: unknown) => {
+      this.location$ = location;
+    });
   }
+
+  ngOnInit(): void {}
 }

@@ -4,9 +4,6 @@
     <div class="flex flex-col my-5 flex-start text-zinc-100">
       <div class="flex flex-row justify-between align-middle">
         <h2>Results</h2>
-        <div class="bg-blue-300 mx-20 px-20">
-          {{ location$ }}
-        </div>
         <button
           *ngIf="!isLoading"
           (click)="addToWatchList(domainResult$)"
