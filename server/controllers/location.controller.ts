@@ -3,18 +3,9 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import { parseUserLocation } from './utils/location/parseUserLocation.util';
 import { validateUserLocation } from './utils/location/validateUserLocation.util';
+import { UserLocation } from '../types/userLocation.interface';
 dotenv.config();
 const LOCATION_API_URL = `${process.env.LOCATION_API_URL}${process.env.LOCATION_TOKEN}`;
-
-interface LocationCoords {
-  latitude: string;
-  longitude: string;
-}
-
-export interface UserLocation {
-  town: string;
-  country: string;
-}
 
 export async function lookUp(req: Request, res: Response) {
   try {
