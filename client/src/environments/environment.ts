@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000/whois',
-  baseUrl: 'http://location:3000',
+  baseUrl: 'http://localhost:3000',
 };
 
 /*
