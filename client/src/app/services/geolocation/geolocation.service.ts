@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, map } from 'rxjs';
+import { Subject, map, catchError, Observable, throwError, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface ILocation {
@@ -24,17 +24,10 @@ export class GeolocationService {
       };
       //TODO: send location coordinates for server-side processing
       try {
-        const response = this.http
-          .post(`${this.BASE_URL}/location`, {
-            params: { lat: location.latitude, long: location.longitude },
-            responseType: 'json',
-          })
-          .pipe(
-            map(data => {
-              console.log('geo data...', data);
-              return data;
-            })
-          );
+        console.log(`${this.BASE_URL}/location`);
+        const response = this.geoLookUp(location).subscribe(location => {
+          console.log('location from server', location);
+        });
         console.log('response from server', response);
       } catch (err) {
         if (!environment.production)
@@ -54,5 +47,20 @@ export class GeolocationService {
 
   public init(): void {
     this.getUserLocation();
+  }
+
+  private geoLookUp(location: ILocation): Observable<any> {
+    return this.http
+      .post(`${this.BASE_URL}/location`, location)
+      .pipe(retry(3), catchError(this.handleError));
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.log('❌ An error occurred on the client side:', error.error);
+    } else {
+      console.error('❌ Something went south on the server side:', error.error);
+    }
+    return throwError(() => new Error('Try later, my friend'));
   }
 }
