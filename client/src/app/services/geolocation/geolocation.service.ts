@@ -11,7 +11,7 @@ export class GeolocationService {
   private BASE_URL = environment.baseUrl;
   location: ILocationCoords = { latitude: '0', longitude: '0' };
   locationObservable = new Subject();
-  userLocation = '';
+  userLocation: IUserLocation | undefined;
   constructor(private http: HttpClient) {}
 
   private getUserLocation(): void {
@@ -23,7 +23,7 @@ export class GeolocationService {
       try {
         this.geoLookUp(location).subscribe(location => {
           const userLocation = location as IUserLocation;
-          this.userLocation = JSON.stringify(userLocation);
+          this.userLocation = userLocation;
           this.locationObservable.next(this.userLocation);
         });
       } catch (err) {

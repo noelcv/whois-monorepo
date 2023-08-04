@@ -9,8 +9,8 @@
       class="bg-red-200 max-h-fit row-start-1 row-span-1 sm:col-start-1 sm:col-end-9 col-start-2 col-end-16 md:mr-36 md:col-start-3 md:col-end-12 md:row-start-2 lg:col-start-4 lg:-ml-20 lg:mr-10">
       <div
         *ngIf="location$"
-        class="mx-auto bg-red-100 w-2/4 ml-3 sm:ml-36 md:ml-48 h-20 xl:ml-60 2xl:ml-72 shadow-xl">
-        {{ location$ }}
+        class="mx-auto first-letter:w-2/4 ml-3 sm:ml-36 md:ml-48 h-20 xl:ml-60 2xl:ml-72">
+        {{ location$.town }}, {{ location$.country }}
       </div>
       <app-search-bar />
       <app-search-results />
