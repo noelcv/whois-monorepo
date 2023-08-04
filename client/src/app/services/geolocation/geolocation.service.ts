@@ -11,7 +11,7 @@ export interface ILocation {
   providedIn: 'root',
 })
 export class GeolocationService {
-  private BASE_URL = environment.apiUrl;
+  private BASE_URL = environment.baseUrl;
   location: ILocation = { latitude: '0', longitude: '0' };
   locationObservable = new Subject();
   constructor(private http: HttpClient) {}
@@ -25,12 +25,13 @@ export class GeolocationService {
       //TODO: send location coordinates for server-side processing
       try {
         const response = this.http
-          .post(this.BASE_URL, {
+          .post(`${this.BASE_URL}/location`, {
             params: { lat: location.latitude, long: location.longitude },
             responseType: 'json',
           })
           .pipe(
             map(data => {
+              console.log('geo data...', data);
               return data;
             })
           );
