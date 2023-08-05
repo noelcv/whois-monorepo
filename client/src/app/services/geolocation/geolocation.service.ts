@@ -21,11 +21,11 @@ export class GeolocationService {
         longitude: position.coords.longitude,
       };
       try {
-        this.geoLookUp(location).subscribe(location => {
-          const userLocation = location as IUserLocation;
-          this.userLocation = userLocation;
-          this.locationObservable.next(this.userLocation);
-        });
+        // this.geoLookUp(location).subscribe(location => {
+        //   const userLocation = location as IUserLocation;
+        //   this.userLocation = userLocation;
+        //   this.locationObservable.next(this.userLocation);
+        // });
       } catch (err) {
         if (!environment.production)
           console.log('Error sending location to server', err);

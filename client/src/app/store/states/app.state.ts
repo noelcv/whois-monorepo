@@ -11,6 +11,7 @@ import {
   initialValidationFeedbackUiState,
   IValidationFeedbackUiState,
 } from './validationUi.state';
+import { ILocationState, initialLocationState } from './location.state';
 
 export interface IAppState {
   router?: RouterReducerState;
@@ -20,6 +21,7 @@ export interface IAppState {
   displayFavorites: IFavoritesUiState;
   watchList: IWatchListState;
   feedback: IValidationFeedbackUiState;
+  location: ILocationState;
 }
 /*this is the equivalent to the store in RTK -
  *we register the different state for the different slices,
@@ -33,6 +35,7 @@ export const initialAppState: IAppState = {
   displayFavorites: initialFavoritesUiState,
   watchList: initialWatchListState,
   feedback: initialValidationFeedbackUiState,
+  location: initialLocationState,
 };
 
 export function getInitialState(): IAppState {
