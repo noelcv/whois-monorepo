@@ -1,5 +1,5 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Component, Input, OnInit, Signal, signal } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
 import { DisplayFavorites } from 'src/app/store/actions/ui.actions';
