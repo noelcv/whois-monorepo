@@ -28,10 +28,24 @@ const getLocation = async (
   long: number
 ): Promise<string | undefined> => {
   try {
+    //STRATEGY:
+    //mock API response on development;
+    if (process.env.NODE_ENV !== 'production') {
+      const mock = { town: 'Berlin', country: 'Germany' };
+      const mockUserLocation = parseUserLocation(mock);
+      return mockUserLocation;
+    }
+    //query API on production;
+    if (process.env.NODE_ENV === 'production') {
+    }
+  } catch (err) {
+    console.log('❌ Error at getLocation: ', err);
+  }
+};
+
+const queryLocationService = async () => {
+  try {
     const locationQuery = `${LOCATION_API_URL}&lat=${lat}&lon=${long}&format=json`;
-    const mock = { town: 'Berlin', country: 'Germany' };
-    const mockUserLocation = parseUserLocation(mock);
-    return mockUserLocation;
     const apiResponse = await axios.get(locationQuery);
     if (apiResponse.data) {
       const town = apiResponse.data.address.town;
@@ -41,6 +55,6 @@ const getLocation = async (
       return userLocation;
     }
   } catch (err) {
-    console.log('❌ Error at getLocation: ', err);
+    console.log('❌ Error at queryLocationService: ', err);
   }
 };
