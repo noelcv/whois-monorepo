@@ -29,6 +29,9 @@ const getLocation = async (
 ): Promise<string | undefined> => {
   try {
     const locationQuery = `${LOCATION_API_URL}&lat=${lat}&lon=${long}&format=json`;
+    const mock = { town: 'Berlin', country: 'Germany' };
+    const mockUserLocation = parseUserLocation(mock);
+    return mockUserLocation;
     const apiResponse = await axios.get(locationQuery);
     if (apiResponse.data) {
       const town = apiResponse.data.address.town;

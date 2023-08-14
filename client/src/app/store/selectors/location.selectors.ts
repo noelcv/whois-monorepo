@@ -4,7 +4,7 @@ import { ILocationState } from '../states/location.state';
 
 const selectLocation = (state: IAppState) => state.location;
 
-export const selectedDomain = createSelector(
+export const selectedLocation = createSelector(
   selectLocation,
-  (state: ILocationState) => state.location
+  (state: ILocationState) => state
 );

@@ -1,11 +1,9 @@
-import { ILocationResult } from 'src/app/types/locationResult.interface';
-
 export interface ILocationState {
-  location: ILocationResult;
+  country: string;
+  town: string;
 }
 
 export const initialLocationState: ILocationState = {
-  location: {
-    result: undefined,
-  },
+  country: '',
+  town: '',
 };

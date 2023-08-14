@@ -2,6 +2,8 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { IUserLocation } from 'src/app/services/geolocation/geolocation.interface';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from 'src/app/store/states/app.state';
 
 @Component({
   selector: 'app-user-location',
@@ -13,11 +15,13 @@ import { GeolocationService } from 'src/app/services/geolocation/geolocation.ser
 export class UserLocationComponent {
   location$: IUserLocation | undefined;
 
-  constructor(geo: GeolocationService) {
+  constructor(geo: GeolocationService, private _store: Store<IAppState>) {
     geo.init();
 
-    geo.locationObservable.subscribe((location: unknown) => {
-      this.location$ = location as unknown as IUserLocation;
-    });
+    this._store
+      .pipe(select('location'))
+      .subscribe((location: IUserLocation) => {
+        this.location$ = location as unknown as IUserLocation;
+      });
   }
 }

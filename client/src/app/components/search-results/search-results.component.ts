@@ -1,7 +1,6 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
 import { DisplayFavorites } from 'src/app/store/actions/ui.actions';
 import {
   AddDomainToWatchList,
@@ -57,7 +56,7 @@ export class SearchResultsComponent implements OnInit {
     }
   }
 
-  constructor(private _store: Store<IAppState>, geo: GeolocationService) {}
+  constructor(private _store: Store<IAppState>) {}
 
   ngOnInit(): void {
     this.domainResult$.subscribe((data: IDomainState) => {

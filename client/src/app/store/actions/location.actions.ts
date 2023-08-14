@@ -1,20 +1,22 @@
 import { Action } from '@ngrx/store';
-import { IParsedLocation } from 'src/app/types/parsedLocation.interface';
+import { IUserLocation } from 'src/app/services/geolocation/geolocation.interface';
 
 export enum ELocationActions {
   SetUserLocation = '[Set UserLocation] Set UserLocation',
-  SelectUserLocation = '[Selected UserLocation] Select User Location',
+  GetUserLocation = '[Get UserLocation] Get User Location',
 }
 
 //LOCATION ACTIONS
 export class SetUserLocation implements Action {
   public readonly type = ELocationActions.SetUserLocation;
-  constructor(public payload: IParsedLocation) {}
+  constructor(public payload: IUserLocation) {
+    console.log('payload', payload);
+  }
 }
 
-export class SelectUserLocation implements Action {
-  public readonly type = ELocationActions.SelectUserLocation;
-  constructor(public payload: IParsedLocation) {}
+export class GetUserLocation implements Action {
+  public readonly type = ELocationActions.GetUserLocation;
+  constructor(public payload: IUserLocation) {}
 }
 
-export type LocationActions = SetUserLocation | SelectUserLocation;
+export type LocationActions = SetUserLocation | GetUserLocation;

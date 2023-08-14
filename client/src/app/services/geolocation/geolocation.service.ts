@@ -1,6 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, catchError, Observable, throwError, retry } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { catchError, Observable, throwError, retry } from 'rxjs';
+import { SetUserLocation } from 'src/app/store/actions/location.actions';
+import { IAppState } from 'src/app/store/states/app.state';
 import { environment } from 'src/environments/environment';
 import { ILocationCoords, IUserLocation } from './geolocation.interface';
 
@@ -10,9 +13,16 @@ import { ILocationCoords, IUserLocation } from './geolocation.interface';
 export class GeolocationService {
   private BASE_URL = environment.baseUrl;
   location: ILocationCoords = { latitude: '0', longitude: '0' };
-  locationObservable = new Subject();
-  userLocation: IUserLocation | undefined;
-  constructor(private http: HttpClient) {}
+  hasLocation = false;
+
+  constructor(private http: HttpClient, private _store: Store<IAppState>) {
+    this._store
+      .pipe(select('location'))
+      .subscribe((location: IUserLocation) => {
+        return (this.hasLocation =
+          location.country === '' && location.town === '' ? false : true);
+      });
+  }
 
   private getUserLocation(): void {
     const success = (position: any): void => {
@@ -21,16 +31,14 @@ export class GeolocationService {
         longitude: position.coords.longitude,
       };
       try {
-        // this.geoLookUp(location).subscribe(location => {
-        //   const userLocation = location as IUserLocation;
-        //   this.userLocation = userLocation;
-        //   this.locationObservable.next(this.userLocation);
-        // });
+        this.geoLookUp(location).subscribe(location => {
+          const userLocation = location as IUserLocation;
+          this._store.dispatch(new SetUserLocation(userLocation));
+        });
       } catch (err) {
         if (!environment.production)
           console.log('Error sending location to server', err);
       }
-      this.locationObservable.next(this.userLocation);
     };
 
     function err() {
@@ -41,7 +49,9 @@ export class GeolocationService {
   }
 
   public init(): void {
-    this.getUserLocation();
+    // to prevent unnecessary queries,
+    // only query location from server if one doesn't exist in the store;
+    if (!this.hasLocation) this.getUserLocation();
   }
 
   private geoLookUp(location: ILocationCoords): Observable<unknown> {
