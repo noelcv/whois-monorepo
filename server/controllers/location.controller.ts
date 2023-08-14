@@ -1,11 +1,7 @@
 import { Request, Response } from 'express';
-import axios from 'axios';
-import dotenv from 'dotenv';
-import { parseUserLocation } from './utils/location/parseUserLocation.util';
 import { validateUserLocation } from './utils/location/validateUserLocation.util';
-import { UserLocation } from '../types/userLocation.interface';
-dotenv.config();
-const LOCATION_API_URL = `${process.env.LOCATION_API_URL}${process.env.LOCATION_TOKEN}`;
+import { mockUserLocation } from './utils/location/mockUserLocation.util';
+import { queryLocationService } from '../services/location/queryLocationService.service';
 
 export async function lookUp(req: Request, res: Response) {
   try {
@@ -31,30 +27,13 @@ const getLocation = async (
     //STRATEGY:
     //mock API response on development;
     if (process.env.NODE_ENV !== 'production') {
-      const mock = { town: 'Berlin', country: 'Germany' };
-      const mockUserLocation = parseUserLocation(mock);
-      return mockUserLocation;
+      return mockUserLocation();
     }
     //query API on production;
     if (process.env.NODE_ENV === 'production') {
+      return await queryLocationService(lat, long);
     }
   } catch (err) {
     console.log('❌ Error at getLocation: ', err);
-  }
-};
-
-const queryLocationService = async () => {
-  try {
-    const locationQuery = `${LOCATION_API_URL}&lat=${lat}&lon=${long}&format=json`;
-    const apiResponse = await axios.get(locationQuery);
-    if (apiResponse.data) {
-      const town = apiResponse.data.address.town;
-      const country = apiResponse.data.address.country;
-      const location: UserLocation = { town: town, country: country };
-      const userLocation = parseUserLocation(location);
-      return userLocation;
-    }
-  } catch (err) {
-    console.log('❌ Error at queryLocationService: ', err);
   }
 };
