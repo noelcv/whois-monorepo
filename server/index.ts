@@ -6,21 +6,15 @@ dotenv.config();
 import morgan from 'morgan';
 import helmet from 'helmet';
 import SECURITY_OPTIONS from './config/helmet.config';
-import { env } from 'process';
-const PORT = env.PORT || 3001;
-const allowedOrigins = [
-  env.PRODUCTION_CLIENT_URL,
-  env.DEV_CLIENT_URL,
-  env.DEV_CLIENT_MICROSERVICE,
-  env.PRODUCTION_CLIENT_MICROSERVICE,
-];
+const PORT = process.env.PORT;
+import ALLOWED_ORIGINS from './config/origins';
 
 const app = Express();
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      if (!origin || ALLOWED_ORIGINS.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
         callback(new Error('Request origin not allowed by CORS!'));
@@ -37,7 +31,7 @@ app.use(morgan('dev'));
 app.use(Express.json());
 
 app.use((req, res, next) => {
-  if (env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'production') {
     res.header(
       'Access-Control-Allow-Origin',
       'https://whois-monorepo-client.vercel.app'
