@@ -8,7 +8,12 @@ import helmet from 'helmet';
 import SECURITY_OPTIONS from './config/helmet.config';
 import { env } from 'process';
 const PORT = env.PORT || 3001;
-const allowedOrigins = [env.PRODUCTION_CLIENT_URL, env.DEV_CLIENT_URL];
+const allowedOrigins = [
+  env.PRODUCTION_CLIENT_URL,
+  env.DEV_CLIENT_URL,
+  env.DEV_CLIENT_MICROSERVICE,
+  env.PRODUCTION_CLIENT_MICROSERVICE,
+];
 
 const app = Express();
 
@@ -21,7 +26,7 @@ app.use(
         callback(new Error('Request origin not allowed by CORS!'));
       }
     },
-    methods: ['GET'],
+    methods: ['GET', 'POST'],
   })
 );
 

@@ -6,7 +6,6 @@ dotenv.config();
 import config from '../config/default';
 
 const MONGODB_URL = `${config.DB_URL}/${config.DB_NAME}`;
-console.log(MONGODB_URL, 'db_url');
 
 (async () => {
   try {
