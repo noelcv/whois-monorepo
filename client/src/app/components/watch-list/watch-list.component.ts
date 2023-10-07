@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import {
   DisplayFavorites,
@@ -20,6 +20,7 @@ export class WatchListComponent implements OnInit {
   @Input()
   watchList$ = this._store.pipe(select('watchList'));
   watchListDomains: IParsedDomain[] = [];
+  watchListCounter = signal(0);
 
   watchListHandler(favorite: IParsedDomain) {
     this._store.dispatch(new DisplayResults(false));
@@ -32,6 +33,7 @@ export class WatchListComponent implements OnInit {
   ngOnInit(): void {
     this._store.pipe(select('watchList')).subscribe(data => {
       this.watchListDomains = data.myWatchList;
+      this.watchListCounter.set(this.watchListDomains.length);
     });
   }
 }
