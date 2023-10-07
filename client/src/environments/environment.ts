@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/whois',
-  baseUrl: 'http://localhost:3000',
+  apiUrl: 'http://localhost:3001/whois',
+  baseUrl: 'http://localhost:3001',
 };
 
 /*
