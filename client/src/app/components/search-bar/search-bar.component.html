@@ -6,11 +6,11 @@
     class="flex flex-row border-solid">
     <input
       (keydown)="onKey($event)"
+      [value]="domainQueryForm.value.sldInput | lowercase"
       formControlName="sldInput"
       class="min-w-fit w-3/4 h-10 sm:h-20 text-sm sm:text-xl p-10 text-zinc-800 md:min-w-fit"
       type="text"
       placeholder="Enter a domain name"
-      type="text"
       min-length="1"
       maxLength="63"
       spellcheck="false"

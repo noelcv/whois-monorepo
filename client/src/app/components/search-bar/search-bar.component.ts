@@ -5,7 +5,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, LowerCasePipe, NgIf } from '@angular/common';
 import { GetDomainQuery } from 'src/app/store/actions/domain.actions';
 import { IAppState } from 'src/app/store/states/app.state';
 import { select, Store } from '@ngrx/store';
@@ -21,7 +21,7 @@ import { forbiddenDomainValidator } from 'src/app/utils/forbiddenDomainValidator
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   standalone: true,
-  imports: [AsyncPipe, NgIf, ReactiveFormsModule],
+  imports: [AsyncPipe, LowerCasePipe, NgIf, ReactiveFormsModule],
   styleUrls: [],
 })
 export class SearchbarComponent implements OnInit {
