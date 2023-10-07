@@ -6,7 +6,7 @@
     class="flex flex-row border-solid">
     <input
       (keydown)="onKey($event)"
-      [value]="domainQueryForm.value.sldInput | lowercase"
+      [value]="domainQueryForm.value.sldInput"
       formControlName="sldInput"
       class="min-w-fit w-3/4 h-10 sm:h-20 text-sm sm:text-xl p-10 text-zinc-800 md:min-w-fit"
       type="text"

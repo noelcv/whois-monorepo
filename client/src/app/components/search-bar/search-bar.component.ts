@@ -15,6 +15,8 @@ import {
   DisplayFeedback,
   DisplayResults,
 } from 'src/app/store/actions/ui.actions';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs';
 import { forbiddenDomainValidator } from 'src/app/utils/forbiddenDomainValidator';
 
 @Component({
@@ -26,7 +28,6 @@ import { forbiddenDomainValidator } from 'src/app/utils/forbiddenDomainValidator
 })
 export class SearchbarComponent implements OnInit {
   @Input() feedback = '';
-
   feedbackUi$ = this._store.pipe(select('feedback'));
 
   selectedTld = 'com'; //define default value for form
@@ -38,19 +39,24 @@ export class SearchbarComponent implements OnInit {
     tldInput: [this.selectedTld],
   });
 
+  constructor(
+    private formBuilder: FormBuilder,
+    private _store: Store<IAppState>
+  ) {}
+
   onKey(event: KeyboardEvent) {
     if (event) this._store.dispatch(new DisplayResults(false));
     this._store.dispatch(new DisplayFeedback(true));
     this._store.dispatch(new DisplayFavorites(false));
   }
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private _store: Store<IAppState>
-  ) {}
-
   ngOnInit(): void {
-    this.domainQueryForm.valueChanges.subscribe();
+    this.domainQueryForm.valueChanges
+      .pipe(debounceTime(200))
+      .subscribe(value => {
+        console.log('showing value changes after 200 miliseconds: ', value);
+        value.sldInput = value.sldInput.toLowerCase();
+      });
     this._store.select('feedback').subscribe();
   }
 
