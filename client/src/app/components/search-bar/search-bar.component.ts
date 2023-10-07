@@ -15,7 +15,6 @@ import {
   DisplayFeedback,
   DisplayResults,
 } from 'src/app/store/actions/ui.actions';
-import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs';
 import { forbiddenDomainValidator } from 'src/app/utils/forbiddenDomainValidator';
 
@@ -29,7 +28,7 @@ import { forbiddenDomainValidator } from 'src/app/utils/forbiddenDomainValidator
 export class SearchbarComponent implements OnInit {
   @Input() feedback = '';
   feedbackUi$ = this._store.pipe(select('feedback'));
-
+  computedSearchInput = '';
   selectedTld = 'com'; //define default value for form
   domainQueryForm: FormGroup = this.formBuilder.group({
     sldInput: [
@@ -44,20 +43,23 @@ export class SearchbarComponent implements OnInit {
     private _store: Store<IAppState>
   ) {}
 
-  onKey(event: KeyboardEvent) {
-    if (event) this._store.dispatch(new DisplayResults(false));
-    this._store.dispatch(new DisplayFeedback(true));
-    this._store.dispatch(new DisplayFavorites(false));
-  }
-
   ngOnInit(): void {
     this.domainQueryForm.valueChanges
       .pipe(debounceTime(200))
       .subscribe(value => {
-        console.log('showing value changes after 200 miliseconds: ', value);
-        value.sldInput = value.sldInput.toLowerCase();
+        /*assign the value of the controlled form to the template
+         * and let the lowercase pipe transformation give a visual cue
+         *to the user
+         */
+        this.computedSearchInput = value.sldInput;
       });
     this._store.select('feedback').subscribe();
+  }
+
+  onKey(event: KeyboardEvent) {
+    if (event) this._store.dispatch(new DisplayResults(false));
+    this._store.dispatch(new DisplayFeedback(true));
+    this._store.dispatch(new DisplayFavorites(false));
   }
 
   onSubmit() {
