@@ -1,7 +1,6 @@
 <div
   class="ml-6 mr-5 grid justify-center shadow-xl bg-slate-800 opacity-80 rounded-sm backdrop-opacity-70 w-3/4 -my-22 mx-auto max-h-fit min-w-fit max-w-xs px-2">
-  <h3 class="text-lg text-zinc-100">WatchList</h3>
-  <h4 class="text-lg text-zinc-50">{{ watchListCounter() }}</h4>
+  <h3 class="text-lg text-zinc-100">WatchList {{ watchListCounter() }}</h3>
   <div
     class="py-2 max-w-xs grid-flow-row sm:flex-col"
     *ngFor="let domain of watchListDomains">
