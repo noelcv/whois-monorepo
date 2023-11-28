@@ -13,7 +13,7 @@ import { QueryEffects } from './store/effects/query.effects';
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([QueryEffects, DomainEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    !environment.production ? StoreDevtoolsModule.instrument({connectInZone: true}) : [],
   ],
 })
 export class StateManagementModule {}
