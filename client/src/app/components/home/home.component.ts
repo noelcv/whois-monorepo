@@ -16,8 +16,8 @@ import { UserLocationComponent } from '../user-location/user-location.component'
     WatchListComponent,
     SearchbarComponent,
     SearchResultsComponent,
-    UserLocationComponent,
-  ],
+    UserLocationComponent
+],
 })
 export class HomeComponent implements OnInit {
   location$: IUserLocation | undefined;

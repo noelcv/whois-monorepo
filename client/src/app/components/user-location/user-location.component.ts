@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { IUserLocation } from 'src/app/services/geolocation/geolocation.interface';
 import { GeolocationService } from 'src/app/services/geolocation/geolocation.service';
@@ -9,7 +9,7 @@ import { IAppState } from 'src/app/store/states/app.state';
   selector: 'app-user-location',
   templateUrl: './user-location.component.html',
   styleUrls: ['./user-location.component.css'],
-  imports: [NgIf],
+  imports: [],
   standalone: true,
 })
 export class UserLocationComponent {

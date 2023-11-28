@@ -1,18 +1,21 @@
 <!-- case 1: location includes town and country -->
-<span
-  *ngIf="location$ && location$.town && location$.country"
-  class="mx-auto first-letter:w-2/4 ml-3 sm:ml-36 md:ml-48 h-20 xl:ml-60 2xl:ml-72">
-  📍 {{ location$.town }}, {{ location$.country }}
-</span>
+@if (location$ && location$.town && location$.country) {
+  <span
+    class="mx-auto first-letter:w-2/4 ml-3 sm:ml-36 md:ml-48 h-20 xl:ml-60 2xl:ml-72">
+    📍 {{ location$.town }}, {{ location$.country }}
+  </span>
+}
 <!-- case 2: location includes only country -->
-<span
-  *ngIf="location$ && !location$.town && location$.country"
-  class="mx-auto first-letter:w-2/4 ml-3 sm:ml-36 md:ml-48 h-20 xl:ml-60 2xl:ml-72">
-  📍 {{ location$.country }}
-</span>
+@if (location$ && !location$.town && location$.country) {
+  <span
+    class="mx-auto first-letter:w-2/4 ml-3 sm:ml-36 md:ml-48 h-20 xl:ml-60 2xl:ml-72">
+    📍 {{ location$.country }}
+  </span>
+}
 <!-- case 3: location includes only town -->
-<span
-  *ngIf="location$ && location$.town && !location$.country"
-  class="mx-auto first-letter:w-2/4 ml-3 sm:ml-36 md:ml-48 h-20 xl:ml-60 2xl:ml-72">
-  📍 {{ location$.town }}
-</span>
+@if (location$ && location$.town && !location$.country) {
+  <span
+    class="mx-auto first-letter:w-2/4 ml-3 sm:ml-36 md:ml-48 h-20 xl:ml-60 2xl:ml-72">
+    📍 {{ location$.town }}
+  </span>
+}

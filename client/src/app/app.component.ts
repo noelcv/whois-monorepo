@@ -20,8 +20,8 @@ import { IAppState } from './store/states/app.state';
     StoreRootModule,
     EffectsRootModule,
     StoreRouterConnectingModule,
-    StoreDevtoolsModule,
-  ],
+    StoreDevtoolsModule
+],
   standalone: true,
 })
 export class AppComponent implements OnInit {

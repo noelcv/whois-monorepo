@@ -30,20 +30,22 @@
       Search
     </button>
   </form>
-  <ng-template [ngIf]="(feedbackUi$ | async)?.display === true">
-    <p
-      class=""
-      *ngIf="domainQueryForm.invalid"
-      class="text-red-900 text-xs pl-2 pt-1 italic"
-      id="alert-input">
-      Your input is {{ domainQueryForm.status }}
-    </p>
-    <p
-      class=""
-      *ngIf="domainQueryForm.valid"
-      class="text-teal-700 text-xs pl-2 pt-1 italic"
-      id="alert-input">
-      Your input is {{ domainQueryForm.status }}
-    </p>
-  </ng-template>
+  @if ((feedbackUi$ | async)?.display === true) {
+    @if (domainQueryForm.invalid) {
+      <p
+        class=""
+        class="text-red-900 text-xs pl-2 pt-1 italic"
+        id="alert-input">
+        Your input is {{ domainQueryForm.status }}
+      </p>
+    }
+    @if (domainQueryForm.valid) {
+      <p
+        class=""
+        class="text-teal-700 text-xs pl-2 pt-1 italic"
+        id="alert-input">
+        Your input is {{ domainQueryForm.status }}
+      </p>
+    }
+  }
 </div>

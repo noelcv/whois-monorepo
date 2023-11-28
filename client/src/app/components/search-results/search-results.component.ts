@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { DisplayFavorites } from 'src/app/store/actions/ui.actions';
@@ -19,7 +19,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
   templateUrl: './search-results.component.html',
   standalone: true,
   styleUrls: [],
-  imports: [AsyncPipe, NgIf, SpinnerComponent],
+  imports: [AsyncPipe, SpinnerComponent],
 })
 export class SearchResultsComponent implements OnInit {
   @Input()

@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+
 import { Component, Input, OnInit, signal } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import {
@@ -12,7 +12,7 @@ import { IParsedDomain } from 'src/app/types/parsedDomain.interface';
 @Component({
   selector: 'app-watch-list',
   templateUrl: './watch-list.component.html',
-  imports: [NgFor],
+  imports: [],
   standalone: true,
   styleUrls: [],
 })
