@@ -31,7 +31,7 @@
     "@ngrx/store-devtools": "^17.0.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.8",
+    "prettier": "^3.1.1",
     "prettier-eslint": "^15.0.1",
     "rxjs": "~7.8.1",
     "tslib": "^2.5.0",
