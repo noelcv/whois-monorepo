@@ -21,6 +21,7 @@
     "lint:ci": "eslint -c .eslintrc.json --fix",
     "test:ci": "echo 'running placeholder for test:ci script'",
     "format": "prettier --write .",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
