@@ -6,3 +6,5 @@ certs
 build
 dist
 .nx
+.angular
+/.angular
