@@ -33,7 +33,6 @@
   @if ((feedbackUi$ | async)?.display === true) {
     @if (domainQueryForm.invalid) {
       <p
-        class=""
         class="text-red-900 text-xs pl-2 pt-1 italic"
         id="alert-input">
         Your input is {{ domainQueryForm.status }}

@@ -51,7 +51,7 @@
         "@angular-eslint/template/mouse-events-have-key-events": "error",
         "@angular-eslint/template/no-autofocus": "error",
         "@angular-eslint/template/no-distracting-elements": "error"
-      },
+      }
     },
     // only apply the prettier plugins after the eslint configs
     {
