@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install:server": "npm --prefix ./server install",
-    "install:client": "npm --prefix ./client install",
+    "install:client": "npm --prefix ./client install --legacy-peer-deps",
     "build": "npm run build:server & npm run build:client",
     "build:server": "npm --prefix ./server run build",
     "build:client": "npm --prefix ./client run build",
