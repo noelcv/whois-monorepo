@@ -20,23 +20,23 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$whois-query-fe-primary: mat.define-palette(mat.$indigo-palette);
-$whois-query-fe-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+//$whois-query-fe-primary: mat.define-palette(mat.$indigo-palette);
+//$whois-query-fe-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$whois-query-fe-warn: mat.define-palette(mat.$red-palette);
+//$whois-query-fe-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$whois-query-fe-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $whois-query-fe-primary,
-      accent: $whois-query-fe-accent,
-      warn: $whois-query-fe-warn,
-    ),
-  )
-);
+//$whois-query-fe-theme: mat.define-light-theme(
+//  (
+//    color: (
+//      primary: $whois-query-fe-primary,
+//      accent: $whois-query-fe-accent,
+//      warn: $whois-query-fe-warn,
+//    ),
+//  )
+//);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
